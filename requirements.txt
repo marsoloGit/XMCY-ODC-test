@@ -6,6 +6,7 @@ webdriver-manager==3.4.2 # https://github.com/SergeyPirogov/webdriver_manager
 page-objects==1.1.0 # https://github.com/man-group/page-objects
 retry==0.9.2 # https://github.com/invl/retry
 testfixtures==6.18.3 # https://github.com/Simplistix/testfixtures
+allure-pytest==2.13.0
 
 
 

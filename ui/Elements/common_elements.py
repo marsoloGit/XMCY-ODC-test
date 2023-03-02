@@ -61,14 +61,15 @@ class Slider(Element):
 
         slider = self.__get__(instance, instance.__class__)
         time.sleep(2)
-
         self.min = int(slider.get_attribute('aria-valuemin'))
         self.max = int(slider.get_attribute('aria-valuemax'))
         slide_step = slider.size['width'] / (self.max - self.min)
 
         x_offset = round(slide_step*value)
-
+        # set el_locator to be thumb one so that to give it focus
+        temp = self.el_locator
         self.el_locator = self.thumb_container_locator
+
         instance.w.switch_to.default_content()
         slider_thumb = self.__get__(instance, instance.__class__)
 
@@ -81,6 +82,8 @@ class Slider(Element):
         instance.w.set_script_timeout(ELEMENT_TIMEOUT)
         action.move_by_offset(x_offset, 0).release().perform()
 
+        # set el_locator back to slider
+        self.el_locator = temp
 
 class Input(Element):
     def clear(self, instance):
