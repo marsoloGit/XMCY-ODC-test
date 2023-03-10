@@ -1,5 +1,3 @@
-import time
-
 import pytest
 from config import settings as s
 from ui.pages.home_page import HomePage
@@ -26,7 +24,6 @@ def home_page(browser: WebDriver()) -> HomePage:
         home_page = cookie_modal.accept_all_cookies()
     except Exception as e:
         pass
-
 
     return home_page
 
