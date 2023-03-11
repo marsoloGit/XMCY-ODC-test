@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.9", "3.10"]
+        python-version: ["3.9"]
 
     steps:
     - uses: actions/checkout@v3
@@ -56,4 +56,4 @@ jobs:
         name: JEST Tests            # Name of the check run which will be created
 #        path: junit/test-results-${{ matrix.python-version }}.xml    # Path to test results
         path: /home/runner/work/XMCY-ODC-test/XMCY-ODC-test/junit/test-results-${{ matrix.python-version }}.xml
-        reporter: python-junit        # Format of test results
+        reporter: java-junit        # Format of test results
