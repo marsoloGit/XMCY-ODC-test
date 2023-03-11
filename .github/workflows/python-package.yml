@@ -49,10 +49,10 @@ jobs:
         path: junit/test-results-${{ matrix.python-version }}.xml
       # Use always() to always run this step to publish test results when there are test failures
       if: ${{ always() }}     
-    - name: Test Report
-      uses: dorny/test-reporter@v1
-      with:
-        artifact: pytest-results-${{ matrix.python-version }}        # artifact name
-        name: Result report                  # Name of the check run which will be created
-        path: '*.xml'                     # Path to test results (inside artifact .zip)
-        reporter: jest-junit              # Format of test results
+#    - name: Test Report
+#      uses: dorny/test-reporter@v1
+#      with:
+#        artifact: pytest-results-${{ matrix.python-version }}        # artifact name
+#        name: Result report                  # Name of the check run which will be created
+#        path: '*.xml'                     # Path to test results (inside artifact .zip)
+#        reporter: jest-junit              # Format of test results
