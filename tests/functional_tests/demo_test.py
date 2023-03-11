@@ -30,4 +30,3 @@ def test_check_calendar_slider(home_page, site_navigation, date_range_name):
 
 
 
-
