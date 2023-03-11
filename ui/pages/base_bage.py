@@ -35,4 +35,3 @@ class BasePage(PageObject):
     def refresh(self):
         return self.w.refresh()
 
-
