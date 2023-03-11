@@ -11,11 +11,6 @@ on:
 
 jobs:
   build:
-    permissions:
-      contents: 'read'
-      id-token: 'write'
-      issues: 'write' #__This fixed the HttpError: Resource not accessible by integration
-
 
     runs-on: ubuntu-latest
     strategy:
@@ -60,4 +55,4 @@ jobs:
       with:
         name: JEST Tests            # Name of the check run which will be created
         path: junit/test-results-${{ matrix.python-version }}.xml    # Path to test results
-        reporter: java-junit        # Format of test results
+        reporter: python-junit        # Format of test results
