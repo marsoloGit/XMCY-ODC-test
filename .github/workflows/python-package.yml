@@ -54,5 +54,6 @@ jobs:
       if: success() || failure()    # run this step even if previous step failed
       with:
         name: JEST Tests            # Name of the check run which will be created
-        path: junit/test-results-${{ matrix.python-version }}.xml    # Path to test results
+#        path: junit/test-results-${{ matrix.python-version }}.xml    # Path to test results
+        path: /home/runner/work/XMCY-ODC-test/XMCY-ODC-test/junit/test-results-${{ matrix.python-version }}.xml
         reporter: python-junit        # Format of test results
