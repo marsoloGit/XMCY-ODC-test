@@ -14,4 +14,3 @@ class ResearchEducationPage(BasePage):
         self.search_menu_block.click_link_by_text('Economic Calendar')
         return EconomicCalendar(self.w)
 
-

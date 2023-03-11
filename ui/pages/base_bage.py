@@ -14,19 +14,15 @@ class BasePage(PageObject):
     page_url = None
     page_name = None
 
-
     def get_without_root_uri(self, uri):
         """
         :param uri:  root_uri attribute is '' here.
         """
         self.w.get(uri)
 
-
     @retry(Exception, tries=3, delay=1)
     def is_present(self, webelement):
         return webelement is not None and webelement != []
-
-
 
     def save_screenshot(self, output_dir: str = s.TESTS_OUTPUT_DIRECTORY):
         current_test_name = os.environ.get("PYTEST_CURRENT_TEST").split(":")[-1].split(" ")[0].replace("test_", "")
@@ -38,4 +34,5 @@ class BasePage(PageObject):
 
     def refresh(self):
         return self.w.refresh()
+
 
