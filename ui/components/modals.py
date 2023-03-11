@@ -1,10 +1,9 @@
-from ui.Elements.common_elements import Element, Elements
+from ui.elements.common_elements import Element, Elements
 from ui.components.container import Container
 from ui.pages.home_page import HomePage
 
 
 class ModalDialog(Container):
-
     modal_container = Element(css="div.modal-content")
     modal_text = Element(css="div.modal-body", context=True)
     modal_buttons = Elements(css="button.btn", context=True)

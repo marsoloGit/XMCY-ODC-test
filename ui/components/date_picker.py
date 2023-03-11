@@ -1,9 +1,8 @@
-from ui.Elements.common_elements import Element, Elements
+from ui.elements.common_elements import Element, Elements
 from ui.components.container import Container
 
 
 class DatePicker(Container):
-
     date_buttons = Elements(context=True, css='button.mat-calendar-body-cell')
     date_picker_container = Element(css='mat-calendar.mat-calendar', iframe_id_='iFrameResizer0')
 

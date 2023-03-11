@@ -1,5 +1,5 @@
 
-from ui.Elements.common_elements import Slider
+from ui.elements.common_elements import Slider
 from ui.components.date_picker import DatePicker
 from ui.pages.base_bage import BasePage
 

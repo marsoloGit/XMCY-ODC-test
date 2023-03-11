@@ -1,18 +1,16 @@
 import time
-
 from page_objects import PageElement, MultiPageElement, _LOCATOR_MAP
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-
 from config import settings as s
 
 ELEMENT_TIMEOUT = s.WEBDRIVER_ELEMENT_WAIT
 
 
 class Element(PageElement):
-    def __init__(self, context=False, wait_time=ELEMENT_TIMEOUT,  **kwargs):
+    def __init__(self, context=False, wait_time=ELEMENT_TIMEOUT, **kwargs):
         if not kwargs:
             raise ValueError("Please specify a locator")
 
@@ -32,13 +30,14 @@ class Element(PageElement):
     def find(self, context):
         try:
             if self.iframe_locator:
-                WebDriverWait(context, self.wait_time).until(EC.frame_to_be_available_and_switch_to_it((self.iframe_locator)))
+                WebDriverWait(context, self.wait_time).until(
+                    EC.frame_to_be_available_and_switch_to_it((self.iframe_locator)))
 
             return WebDriverWait(context, self.wait_time).until(EC.presence_of_element_located(self.el_locator))
 
         except TimeoutException:
             return None
-        except NoSuchElementException as e:
+        except NoSuchElementException:
             pass
 
 
@@ -65,7 +64,7 @@ class Slider(Element):
         self.max = int(slider.get_attribute('aria-valuemax'))
         slide_step = slider.size['width'] / (self.max - self.min)
 
-        x_offset = round(slide_step*value)
+        x_offset = round(slide_step * value)
         # set el_locator to be thumb one so that to give it focus
         temp = self.el_locator
         self.el_locator = self.thumb_container_locator
@@ -76,7 +75,6 @@ class Slider(Element):
         if not slider_thumb:
             raise ValueError("Can't set value, slider thumb not found")
 
-
         action = ActionChains(instance.w)
         action.click_and_hold(slider_thumb)
         instance.w.set_script_timeout(ELEMENT_TIMEOUT)
@@ -84,6 +82,7 @@ class Slider(Element):
 
         # set el_locator back to slider
         self.el_locator = temp
+
 
 class Input(Element):
     def clear(self, instance):
@@ -105,7 +104,3 @@ class Elements(MultiPageElement):
             return WebDriverWait(context, self.wait_time).until(EC.presence_of_all_elements_located(self.locator))
         except (NoSuchElementException, TimeoutException):
             return []
-
-
-
-

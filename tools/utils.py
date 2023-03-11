@@ -2,7 +2,7 @@ import datetime
 import random
 
 
-def unique_time_stamp(num: int = 1, range_start: int = 0, range_end: int = 99999,):
+def unique_time_stamp(num: int = 1, range_start: int = 0, range_end: int = 99999, ):
     """
     Returns a unique string. Using a timestamp guarantees that a string cannot be repeated
     :param: num is positive number, this is a number of a random string to return, e.g.
@@ -13,5 +13,3 @@ def unique_time_stamp(num: int = 1, range_start: int = 0, range_end: int = 99999
     """
     random_numbers = random.sample(range(range_start, range_end), num)
     return [datetime.datetime.utcnow().strftime('%m%d%y%H%m%S') + str(i) for i in random_numbers][num - 1]
-
-

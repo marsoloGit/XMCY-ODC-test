@@ -22,7 +22,7 @@ def home_page(browser: WebDriver()) -> HomePage:
         home_page.w.set_page_load_timeout(s.WEBDRIVER_ELEMENT_WAIT)
         cookie_modal = CookieModal(browser)
         home_page = cookie_modal.accept_all_cookies()
-    except Exception as e:
+    except Exception:
         pass
 
     return home_page

@@ -7,8 +7,7 @@ from testfixtures import compare
 
 def test_check_flow_to_calendar(home_page):
     research_and_education_page = home_page.navigate_to_research_and_education()
-    calendar_page=research_and_education_page.navigate_to_calendar()
-
+    research_and_education_page.navigate_to_calendar()
 
 
 date_range_names = [
@@ -17,6 +16,7 @@ date_range_names = [
     CalendarRanges.TODAY,
     CalendarRanges.NEXT_MONTH,
 ]
+
 
 @pytest.mark.parametrize("date_range_name", date_range_names)
 def test_check_calendar_slider(home_page, site_navigation, date_range_name):
@@ -27,8 +27,6 @@ def test_check_calendar_slider(home_page, site_navigation, date_range_name):
     expected_dates_range = CalendarRanges.get_range(date_range_name)
 
     compare(actual=actual_dates_range, expected=expected_dates_range)
-
-
 
 
 

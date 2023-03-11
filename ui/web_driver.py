@@ -1,4 +1,3 @@
-
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
@@ -16,7 +15,6 @@ class WebDriver:
         elif browser_type == BrowserType.CHROME.value:
             browser_options = webdriver.ChromeOptions()
 
-
         browser_options.add_argument("--headless")
         browser_options.add_argument("--no-sandbox")
         browser_options.add_argument("--disable-dev-shm-usage")
@@ -33,5 +31,3 @@ class WebDriver:
             raise Exception("Browser was not defined")
 
         return browser
-
-

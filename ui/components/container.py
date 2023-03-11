@@ -1,6 +1,3 @@
-import time
-
-from ui.Elements.common_elements import Element, Elements
 from ui.pages.base_bage import BasePage
 
 
@@ -15,4 +12,3 @@ class Container(BasePage):
         except Exception as e:
             self.save_screenshot()
             raise e
-
