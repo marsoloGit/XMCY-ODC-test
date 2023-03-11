@@ -28,6 +28,3 @@ def test_check_calendar_slider(home_page, site_navigation, date_range_name):
     expected_dates_range = CalendarRanges.get_range(date_range_name)
 
     compare(actual=actual_dates_range, expected=expected_dates_range)
-
-
-
