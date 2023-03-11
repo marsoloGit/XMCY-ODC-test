@@ -51,6 +51,10 @@ jobs:
 #      if: ${{ always() }}
     - name: Test Report
       uses: dorny/test-reporter@v1
+      permissions:
+        id-token: write
+        contents: read
+        checks: write
       if: success() || failure()    # run this step even if previous step failed
       with:
         name: JEST Tests            # Name of the check run which will be created
