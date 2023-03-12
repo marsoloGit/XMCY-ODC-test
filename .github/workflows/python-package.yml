@@ -57,7 +57,7 @@ jobs:
       uses: dorny/test-reporter@v1
       if: success() || failure()    # run this step even if previous step failed
       with:
-        name: us tests            # Name of the check run which will be created
+        name: UI tests            # Name of the check run which will be created
         path: junit/test-results-${{ matrix.python-version }}.xml    # Path to test results
 #        path: /home/runner/work/XMCY-ODC-test/XMCY-ODC-test/junit/test-results-${{ matrix.python-version }}.xml
         reporter: java-junit        # Format of test results
