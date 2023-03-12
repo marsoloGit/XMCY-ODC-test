@@ -13,6 +13,10 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+      checks: write
     strategy:
       fail-fast: false
       matrix:
@@ -50,11 +54,7 @@ jobs:
 #      # Use always() to always run this step to publish test results when there are test failures
 #      if: ${{ always() }}
     - name: Test Report
-      uses: dorny/test-reporter@v1
-      permissions:
-        id-token: write
-        contents: read
-        checks: write
+      uses: dorny/test-reporter@v
       if: success() || failure()    # run this step even if previous step failed
       with:
         name: JEST Tests            # Name of the check run which will be created
