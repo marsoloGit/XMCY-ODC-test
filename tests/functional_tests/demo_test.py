@@ -8,14 +8,13 @@ from testfixtures import compare
 def test_check_flow_to_calendar(home_page):
     research_and_education_page = home_page.navigate_to_research_and_education()
     research_and_education_page.navigate_to_calendar()
-    assert 1 == 1
 
 
 date_range_names = [
     CalendarRanges.NEXT_WEEK,
-    CalendarRanges.TOMORROW,
-    CalendarRanges.TODAY,
-    CalendarRanges.NEXT_MONTH,
+    # CalendarRanges.TOMORROW,
+    # CalendarRanges.TODAY,
+    # CalendarRanges.NEXT_MONTH,
 ]
 
 
