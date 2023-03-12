@@ -6,7 +6,7 @@ from ui.pages.navigation import Navigation
 from ui.web_driver import WebDriver
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture(scope='module')
 def browser() -> WebDriver:
     a_browser = WebDriver().get_browser_instance(s.BROWSER)
     yield a_browser
