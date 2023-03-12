@@ -12,7 +12,7 @@ def test_check_flow_to_calendar(home_page):
 
 date_range_names = [
     CalendarRanges.NEXT_WEEK,
-    # CalendarRanges.TOMORROW,
+    CalendarRanges.TOMORROW,
     # CalendarRanges.TODAY,
     # CalendarRanges.NEXT_MONTH,
 ]
