@@ -43,11 +43,11 @@ jobs:
     - name: Run tox
         # Run tox using the version of Python in `PATH`
       run: tox -e py
-    - name: Test with pytest
 
     - name: Ensure browsers are installed
-        run: python -m playwright install --with-deps
+      run: python -m playwright install --with-deps
 
+    - name: Test with pytest
       run: |
         pytest --doctest-modules --junitxml=junit/test-results-${{ matrix.python-version }}.xml
 #    - name: Upload pytest test results
