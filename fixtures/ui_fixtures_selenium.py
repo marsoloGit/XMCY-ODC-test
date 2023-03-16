@@ -1,9 +1,9 @@
 import pytest
 from config import settings as s
-from ui.pages.home_page import HomePage
-from ui.components.modals import CookieModal
-from ui.pages.navigation import Navigation
-from ui.web_driver import WebDriver
+from ui.selenium.pages.home_page import HomePage
+from ui.selenium.components.modals import CookieModal
+from ui.selenium.pages.navigation import Navigation
+from ui.selenium.web_driver import WebDriver
 
 
 @pytest.fixture(scope='session')
@@ -31,3 +31,7 @@ def home_page(browser: WebDriver()) -> HomePage:
 @pytest.fixture(scope='module')
 def site_navigation(browser: WebDriver()) -> Navigation:
     return Navigation(browser)
+
+
+
+

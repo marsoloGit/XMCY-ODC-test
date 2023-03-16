@@ -1,4 +1,4 @@
-from ui.pages.base_bage import BasePage
+from ui.selenium.pages.base_bage import BasePage
 
 
 class Container(BasePage):

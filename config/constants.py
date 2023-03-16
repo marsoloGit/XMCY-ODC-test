@@ -47,5 +47,6 @@ class CalendarRanges(Enum):
 
 
 class BrowserType(Enum):
-    CHROME = 'chrome'
+    CHROME = 'chromium'
     FIREFOX = 'firefox'
+    WEBKIT = 'webkit'

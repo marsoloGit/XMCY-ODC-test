@@ -1,6 +1,6 @@
-from ui.elements.common_elements import Slider
-from ui.components.date_picker import DatePicker
-from ui.pages.base_bage import BasePage
+from ui.selenium.elements.common_elements import Slider
+from ui.selenium.components.date_picker import DatePicker
+from ui.selenium.pages.base_bage import BasePage
 
 
 class EconomicCalendar(BasePage):

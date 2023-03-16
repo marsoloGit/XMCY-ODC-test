@@ -1,5 +1,5 @@
-from ui.elements.common_elements import Element, Elements
-from ui.components.container import Container
+from ui.selenium.elements.common_elements import Element, Elements
+from ui.selenium.components.container import Container
 
 
 class MenuBlock(Container):

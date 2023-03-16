@@ -1,6 +1,6 @@
-from ui.components.menu_block import ResearchMenuBlock
-from ui.pages.base_bage import BasePage
-from ui.pages.economic_calendar_page import EconomicCalendar
+from ui.selenium.components.menu_block import ResearchMenuBlock
+from ui.selenium.pages.base_bage import BasePage
+from ui.selenium.pages.economic_calendar_page import EconomicCalendar
 
 
 class ResearchEducationPage(BasePage):
