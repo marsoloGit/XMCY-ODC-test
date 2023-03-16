@@ -2,6 +2,7 @@ from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 from config.constants import BrowserType
+from config import settings as s
 
 
 class WebDriver:
@@ -15,12 +16,13 @@ class WebDriver:
         elif browser_type == BrowserType.CHROME:
             browser_options = webdriver.ChromeOptions()
 
-        # browser_options.add_argument("--headless")
-        # browser_options.add_argument("--no-sandbox")
-        # browser_options.add_argument("--disable-dev-shm-usage")
-        # browser_options.add_argument("--disable-gpu")
-        # browser_options.add_argument("--start-maximized")
-        # browser_options.add_argument('window-size=1920,1080')
+        if s.BROWSER_HEADLESS:
+            browser_options.add_argument("--headless")
+            browser_options.add_argument("--no-sandbox")
+            browser_options.add_argument("--disable-dev-shm-usage")
+            browser_options.add_argument("--disable-gpu")
+            browser_options.add_argument("--start-maximized")
+            browser_options.add_argument('window-size=1920,1080')
 
         if browser_type == BrowserType.CHROME:
             browser = webdriver.Chrome(options=browser_options, executable_path=ChromeDriverManager().install())

@@ -6,16 +6,16 @@ from playwright.sync_api import Playwright
 
 
 @pytest.fixture(scope='session')
-def browser(playwright: Playwright):
-    browser = getattr(playwright, s.BROWSER.value).launch(headless=False)
+def browser_pw(playwright: Playwright):
+    browser = getattr(playwright, s.BROWSER.value).launch(headless=s.BROWSER_HEADLESS)
 
     yield browser
     browser.close()
 
 
 @pytest.fixture(scope='module')
-def page(browser, playwright: Playwright):
-    context = browser.new_context(
+def page(browser_pw, playwright: Playwright):
+    context = browser_pw.new_context(
         base_url=s.XMCY_URL,
         viewport={
             "width": 1920,
@@ -28,7 +28,7 @@ def page(browser, playwright: Playwright):
 
 
 @pytest.fixture(scope='module')
-def home_page(page):
+def home_page_pw(page):
     page.goto('/')
     try:
         CookieModal(page).accept_all_cookies()
@@ -37,7 +37,7 @@ def home_page(page):
 
     return HomePage(page)
 
-
+#
 # @pytest.fixture
 # def page(browser, playwright: Playwright):
 #     iphone_11 = playwright.devices['iPhone 11 Pro']
