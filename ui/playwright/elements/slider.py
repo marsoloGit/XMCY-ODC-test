@@ -5,7 +5,7 @@ class Slider:
     def __init__(self, page, css_slider, css_thumb, css_iframe=None):
         self.page = page
         if css_iframe:
-            element_container =  page.frame_locator('#iFrameResizer0')
+            element_container =  page.frame_locator(css_iframe)
         else:
             element_container = page
         self.slider = element_container.locator(css_slider)

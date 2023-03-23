@@ -8,9 +8,9 @@ class ResearchEducationPage:
         self.page = page
 
     @property
-    def lnk_research_and_education(self):
+    def lnk_economic_calendar(self):
         return self.page.get_by_role(role='link', name="Economic Calendar")
 
     def navigate_to_calendar(self):
-        self.lnk_research_and_education.click()
+        self.lnk_economic_calendar.click()
         return EconomicCalendar(self.page)
