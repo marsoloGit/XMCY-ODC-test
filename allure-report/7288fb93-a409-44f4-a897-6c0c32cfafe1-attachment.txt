@@ -1,6 +1,0 @@
-
-
-====== WebDriver manager ======
-Current google-chrome version is 110.0.5481
-Get LATEST driver version for 110.0.5481
-Driver [/Users/marina/.wdm/drivers/chromedriver/mac64/110.0.5481.77/chromedriver] found in cache

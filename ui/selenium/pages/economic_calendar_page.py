@@ -11,9 +11,10 @@ class EconomicCalendar(BasePage):
         self.date_picker = DatePicker(webdriver)
 
     slider = Slider(
-        css='mat-slider[role=slider]',
-        iframe_id_='iFrameResizer0',
-        thumb_container_css='mat-slider[role=slider] div.mat-slider-thumb',
+        css='mat-slider',
+        iframe_css='iframe[title="Economic Calendar"]',
+        thumb_container_css='.mdc-slider__thumb',
+        input_range_css='input[type="range"]',
     )
 
     def move_slider_to(self, to_value):

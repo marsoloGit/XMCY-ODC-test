@@ -1,6 +1,0 @@
-[32mINFO    [0m WDM:logger.py:22 
-
-[32mINFO    [0m WDM:logger.py:12 ====== WebDriver manager ======
-[32mINFO    [0m WDM:logger.py:12 Current google-chrome version is 110.0.5481
-[32mINFO    [0m WDM:logger.py:12 Get LATEST driver version for 110.0.5481
-[32mINFO    [0m WDM:logger.py:12 Driver [/Users/marina/.wdm/drivers/chromedriver/mac64/110.0.5481.77/chromedriver] found in cache

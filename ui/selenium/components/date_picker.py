@@ -4,7 +4,7 @@ from ui.selenium.components.container import Container
 
 class DatePicker(Container):
     date_buttons = Elements(context=True, css='button.mat-calendar-body-cell')
-    date_picker_container = Element(css='mat-calendar.mat-calendar', iframe_id_='iFrameResizer0')
+    date_picker_container = Element(css='mat-calendar.mat-calendar', iframe_css='iframe[title="Economic Calendar"]')
 
     def __init__(self, webdriver):
         super(DatePicker, self).__init__(webdriver=webdriver)

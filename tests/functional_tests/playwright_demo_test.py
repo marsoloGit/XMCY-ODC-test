@@ -1,12 +1,18 @@
+from ui.playwright.elements.menu_block import DesktopMenuBlock
 from testfixtures import compare
 import pytest
 from config.constants import CalendarRanges
 from ui.playwright.pages.economic_calendar_page import EconomicCalendar
 
 
-def test_check_flow_to_calendar(home_page_pw):
-    research_and_education_page = home_page_pw.navigate_to_research_and_education()
-    research_and_education_page.navigate_to_calendar()
+def test_check_flow_to_calendar(home_page_pw, page):
+    # Menu accessible from home_page
+    home_page_pw.desktop_menu.click_link_by_text('Discover')
+    home_page_pw.desktop_menu.click_link_by_text('Economic Calendar')
+    # Even if we are already on the calendar page, the menu is still there!
+    calendar_page = EconomicCalendar(page)
+    calendar_page.desktop_menu.click_link_by_text('Trading')
+
 
 
 date_range_names = [

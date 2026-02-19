@@ -6,7 +6,7 @@ class Container(BasePage):
     def click_container_element_by_text(self, elements, text):
         try:
             for el in elements:
-                if el.text.strip() == text:
+                if el.text.strip().lower() == text.lower():
                     el.click()
                     break
         except Exception as e:

@@ -1,9 +1,10 @@
+from ui.playwright.pages.base_page import BasePage
 from ui.playwright.pages.research_and_education_page import ResearchEducationPage
 
 
-class HomePage:
+class HomePage(BasePage):
     def __init__(self, page):
-        self.page = page
+        super().__init__(page)
 
     @property
     def lnk_research_and_education(self):

@@ -4,9 +4,9 @@ from ui.selenium.pages.home_page import HomePage
 
 
 class ModalDialog(Container):
-    modal_container = Element(css="div.modal-content")
-    modal_text = Element(css="div.modal-body", context=True)
-    modal_buttons = Elements(css="button.btn", context=True)
+    modal_container = Element(css="xm-cookie-modal-main")
+    modal_text = Element(css="section.modal-body", context=True)
+    modal_buttons = Elements(css="button", context=True)
 
     def get_modal_text(self):
         text = self.modal_text(self.modal_container).text
@@ -21,5 +21,5 @@ class ModalDialog(Container):
 
 class CookieModal(ModalDialog):
     def accept_all_cookies(self):
-        self.click_dialog_button_by_text('ACCEPT ALL')
+        self.click_dialog_button_by_text('Accept All')
         return HomePage(self.w)

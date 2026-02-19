@@ -45,41 +45,43 @@ class Slider(Element):
     def __init__(self, context=False, wait_time=ELEMENT_TIMEOUT, **kwargs):
         super(Slider, self).__init__(context, **kwargs)
         self.wait_time = wait_time
-        self.thumb_container_locator = None
+        self.input_range_locator = None
         self.min = 0
         self.max = 0
 
         for k, v in kwargs.items():
-            if 'thumb_container' in k:
-                k = k.removeprefix('thumb_container_')
-                self.thumb_container_locator = (_LOCATOR_MAP[k], v)
+            if 'input_range' in k:
+                k = k.removeprefix('input_range_')
+                self.input_range_locator = (_LOCATOR_MAP[k], v)
 
     def __set__(self, instance, value):
         if self.has_context:
             raise ValueError("Sorry, the set descriptor doesn't support elements with context.")
 
         slider = self.__get__(instance, instance.__class__)
-        time.sleep(2)
-        self.min = int(slider.get_attribute('aria-valuemin'))
-        self.max = int(slider.get_attribute('aria-valuemax'))
-        slide_step = slider.size['width'] / (self.max - self.min)
+        width = slider.size['width']
 
-        x_offset = round(slide_step * value)
         # set el_locator to be thumb one so that to give it focus
         temp = self.el_locator
-        self.el_locator = self.thumb_container_locator
-
+        self.el_locator = self.input_range_locator
         instance.w.switch_to.default_content()
-        slider_thumb = self.__get__(instance, instance.__class__)
-
-        if not slider_thumb:
+        slider_input_range = self.__get__(instance, instance.__class__)
+        if not slider_input_range:
             raise ValueError("Can't set value, slider thumb not found")
 
+        self.min = int(slider_input_range.get_attribute("min"))
+        self.max = int(slider_input_range.get_attribute("max"))
+        slide_step = width / (self.max - self.min)
+        # target in px from left
+        x_offset = round(slide_step * value)
+        # Selenium counts offset from the center!
+        offset_from_center = x_offset - (width / 2)
+        # scroll to the element
+        instance.w.execute_script("arguments[0].scrollIntoView({block:'center'});", slider)
+        # click into the accurate position
         action = ActionChains(instance.w)
-        action.click_and_hold(slider_thumb)
-        instance.w.set_script_timeout(ELEMENT_TIMEOUT)
-        action.move_by_offset(x_offset, 0).release().perform()
-
+        action.move_to_element_with_offset(slider, int(offset_from_center), 0)
+        action.click().perform()
         # set el_locator back to slider
         self.el_locator = temp
 

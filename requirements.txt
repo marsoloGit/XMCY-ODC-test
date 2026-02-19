@@ -1,8 +1,7 @@
 pytest==6.2.5 # https://github.com/pytest-dev/pytest
-PyYAML==5.4.1 # https://github.com/yaml/pyyaml
+PyYAML>=5.4.1 # https://github.com/yaml/pyyaml
 GitPython==3.1.24 # https://github.com/gitpython-developers/GitPython
-selenium==3.141.0 # https://github.com/SeleniumHQ/selenium/tree/trunk/py
-webdriver-manager==3.4.2 # https://github.com/SergeyPirogov/webdriver_manager
+selenium==4.11.0 # https://github.com/SeleniumHQ/selenium/tree/trunk/py
 page-objects==1.1.0 # https://github.com/man-group/page-objects
 retry==0.9.2 # https://github.com/invl/retry
 testfixtures==6.18.3 # https://github.com/Simplistix/testfixtures

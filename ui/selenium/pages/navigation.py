@@ -6,6 +6,6 @@ from config import settings as s
 class Navigation(BasePage):
 
     def navigate_to_economic_calendar(self):
-        self.get('/research/economicCalendar')
+        self.get('/economic-calendar')
         self.w.set_page_load_timeout(s.WEBDRIVER_ELEMENT_WAIT)
         return EconomicCalendar(self.w)

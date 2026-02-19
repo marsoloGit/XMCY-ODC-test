@@ -3,7 +3,7 @@
 class DatePicker:
     def __init__(self, page):
         self.page = page
-        self.date_buttons = self.page.frame_locator('#iFrameResizer0').locator('button.mat-calendar-body-cell')
+        self.date_buttons = self.page.frame_locator('iframe[title="Economic Calendar"]').locator('button.mat-calendar-body-cell')
 
     def get_selected_range(self):
 

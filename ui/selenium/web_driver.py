@@ -1,6 +1,4 @@
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.firefox import GeckoDriverManager
 from config.constants import BrowserType
 from config import settings as s
 
@@ -23,11 +21,15 @@ class WebDriver:
             browser_options.add_argument("--disable-gpu")
             browser_options.add_argument("--start-maximized")
             browser_options.add_argument('window-size=1920,1080')
+            browser_options.add_argument("--disable-notifications");
 
         if browser_type == BrowserType.CHROME:
-            browser = webdriver.Chrome(options=browser_options, executable_path=ChromeDriverManager().install())
+            # browser = webdriver.Chrome(options=browser_options, executable_path=ChromeDriverManager().install())
+            browser = webdriver.Chrome(options=browser_options)
+
         elif BrowserType.FIREFOX:
-            browser = webdriver.Firefox(options=browser_options, executable_path=GeckoDriverManager().install())
+            # browser = webdriver.Firefox(options=browser_options, executable_path=GeckoDriverManager().install())
+            browser = webdriver.Firefox(options=browser_options)
 
         else:
             raise Exception("Browser was not defined")

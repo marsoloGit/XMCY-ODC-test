@@ -7,11 +7,11 @@ class CookieModal:
 
     @property
     def modal_container(self):
-        return self.page.locator("#cookieModal div.modal-content")
+        return self.page.locator("xm-cookie-modal-main")
 
     @property
     def btn_accept_all(self):
-        return self.modal_container.get_by_text("ACCEPT ALL")
+        return self.modal_container.get_by_role("button", name="Accept All")
 
     def accept_all_cookies(self):
         self.btn_accept_all.click()
