@@ -19,12 +19,12 @@ jobs:
       contents: read
       checks: write
       
-    # env:
-    #   ALLURE_ENDPOINT: ${{ secrets.ALLURE_ENDPOINT }}
-    #   ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
-    #   ALLURE_PROJECT_ID: ${{ vars.ALLURE_PROJECT_ID }}  
-    strategy:
-    
+    env:
+      ALLURE_ENDPOINT: ${{ vars.ALLURE_ENDPOINT }}
+      ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
+      ALLURE_PROJECT_ID: ${{ vars.ALLURE_PROJECT_ID }}  
+
+    strategy:  
       fail-fast: false
       matrix:
         python-version: ["3.9"]
@@ -34,7 +34,6 @@ jobs:
     - name: Print Allure variables
       run: |
         echo "ALLURE_ENDPOINT = ${{ secrets.ALLURE_ENDPOINT }}"
-        echo "ALLURE_TOKEN = ${{ secrets.ALLURE_TOKEN }}"
         echo "ALLURE_PROJECT_ID = ${{ secrets.ALLURE_PROJECT_ID }}"
         echo "ALLURE_ENDPOINT = ${{ vars.ALLURE_ENDPOINT }}"
         echo "ALLURE_PROJECT_ID = ${{ vars.ALLURE_PROJECT_ID }}"
