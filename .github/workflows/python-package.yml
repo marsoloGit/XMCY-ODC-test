@@ -51,10 +51,7 @@ jobs:
         curl -L https://github.com/allure-framework/allurectl/releases/latest/download/allurectl_linux_amd64 -o allurectl
         chmod +x allurectl
         sudo mv allurectl /usr/local/bin/allurectl
-    - name: Run selenium pytests
-      run: |
-        pytest tests/functional_tests/demo_test.py --doctest-modules --junitxml=junit/test-results-selenium-${{ matrix.python-version }}.xml
-
+        
     - name: Run tests with Allure
       env:
         ALLURE_ENDPOINT: ${{ secrets.ALLURE_ENDPOINT }}
@@ -62,10 +59,14 @@ jobs:
         ALLURE_PROJECT_ID: ${{ secrets.ALLURE_PROJECT_ID }}
       run: |
         allurectl watch -- pytest --alluredir=allure-results
-    
-    - name: Run playwright pytests
-      run: |
-        pytest tests/functional_tests/playwright_demo_test.py --doctest-modules --junitxml=junit/test-results-playwright-${{ matrix.python-version }}.xml
+
+    # - name: Run selenium pytests
+    #   run: |
+    #     pytest tests/functional_tests/demo_test.py --doctest-modules --junitxml=junit/test-results-selenium-${{ matrix.python-version }}.xml
+     
+    # - name: Run playwright pytests
+    #   run: |
+    #     pytest tests/functional_tests/playwright_demo_test.py --doctest-modules --junitxml=junit/test-results-playwright-${{ matrix.python-version }}.xml
 
 #    - name: Upload pytest test results
 #      uses: actions/upload-artifact@v3
