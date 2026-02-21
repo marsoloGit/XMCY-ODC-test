@@ -38,3 +38,4 @@ test-results/
 .vscode/
 
 allure-report/
+allure-results/

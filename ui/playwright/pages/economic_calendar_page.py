@@ -1,3 +1,5 @@
+import allure
+
 from ui.playwright.pages.base_page import BasePage
 from ui.playwright.elements.date_picker import DatePicker
 from ui.playwright.elements.slider import Slider
@@ -21,11 +23,13 @@ class EconomicCalendar(BasePage):
     def date_picker(self):
         return DatePicker(self.page)
 
+    @allure.step("Navigate to economicCalendar")
     def navigate(self):
         self.page.goto('/research/economicCalendar',
                        wait_until="domcontentloaded",
                        timeout=60000,
                        )
 
+    @allure.step("Move slider")
     def move_slider_to(self, to_value):
         self.slider.move(to_value)
