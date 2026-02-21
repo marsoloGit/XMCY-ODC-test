@@ -13,15 +13,16 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    environment: production 
     permissions:
       id-token: write
       contents: read
       checks: write
       
-    env:
-      ALLURE_ENDPOINT: ${{ secrets.ALLURE_ENDPOINT }}
-      ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
-      ALLURE_PROJECT_ID: ${{ vars.ALLURE_PROJECT_ID }}  
+    # env:
+    #   ALLURE_ENDPOINT: ${{ secrets.ALLURE_ENDPOINT }}
+    #   ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
+    #   ALLURE_PROJECT_ID: ${{ vars.ALLURE_PROJECT_ID }}  
     strategy:
     
       fail-fast: false
@@ -39,7 +40,6 @@ jobs:
         echo "ALLURE_PROJECT_ID = ${{ vars.ALLURE_PROJECT_ID }}"
     - name: Print all env
       run: env
-        
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
