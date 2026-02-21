@@ -63,7 +63,7 @@ jobs:
         allurectl watch \
           --endpoint=${{ secrets.ALLURE_ENDPOINT }} \
           --token=${{ secrets.ALLURE_TOKEN }} \
-          --project-id=${{ vars.ALLURE_PROJECT_ID }} \
+          --project-id=${{ secrets.ALLURE_PROJECT_ID }} \
           -- pytest --alluredir=allure-results
 
     # - name: Run selenium pytests
