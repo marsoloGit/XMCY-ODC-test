@@ -1,0 +1,97 @@
+# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: QA Tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+      checks: write
+      
+    env:
+      ALLURE_ENDPOINT: ${{ secrets.ALLURE_ENDPOINT }}
+      ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
+      ALLURE_PROJECT_ID: ${{ vars.ALLURE_PROJECT_ID }}  
+    strategy:
+    
+      fail-fast: false
+      matrix:
+        python-version: ["3.9"]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install flake8 pytest
+        pip install tox
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Lint with flake8
+      run: |
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    - name: Run tox
+        # Run tox using the version of Python in `PATH`
+      run: tox -e py
+    - name: Ensure browsers are installed
+      run: python -m playwright install --with-deps
+      
+    - name: Install allurectl
+      run: |
+        curl -L https://github.com/allure-framework/allurectl/releases/latest/download/allurectl_linux_amd64 -o allurectl
+        chmod +x allurectl
+        sudo mv allurectl /usr/local/bin/allurectl
+        
+    - name: Run tests with Allure
+      run: |
+        allurectl watch \
+          --endpoint=${{ secrets.ALLURE_ENDPOINT }} \
+          --token=${{ secrets.ALLURE_TOKEN }} \
+          --project-id=${{ vars.ALLURE_PROJECT_ID }} \
+          -- pytest --alluredir=allure-results
+
+    # - name: Run selenium pytests
+    #   run: |
+    #     pytest tests/functional_tests/demo_test.py --doctest-modules --junitxml=junit/test-results-selenium-${{ matrix.python-version }}.xml
+    
+    # - name: Run playwright pytests
+    #   run: |
+    #     pytest tests/functional_tests/playwright_demo_test.py --doctest-modules --junitxml=junit/test-results-playwright-${{ matrix.python-version }}.xml
+
+#    - name: Upload pytest test results
+#      uses: actions/upload-artifact@v3
+#      with:
+#        name: pytest-results-${{ matrix.python-version }}
+#        path: junit/test-results-${{ matrix.python-version }}.xml
+#      # Use always() to always run this step to publish test results when there are test failures
+#      if: ${{ always() }}
+    # - name: Test Results Selenium
+    #   uses: dorny/test-reporter@v1
+    #   if: success() || failure()    # run this step even if previous step failed
+    #   with:
+    #     name: UI tests selenium            # Name of the check run which will be created
+    #     path: junit/test-results-selenium-${{ matrix.python-version }}.xml    # Path to test results
+
+    # - name: Test Resultsuses Playwright
+    #   uses: dorny/test-reporter@v1
+    #   if: success() || failure()    # run this step even if previous step failed
+    #   with:
+    #     name: UI tests playwright            # Name of the check run which will be created
+    #     path: junit/test-results-playwright-${{ matrix.python-version }}.xml    # Path to test results
+    #     reporter: java-junit        # Format of test results
