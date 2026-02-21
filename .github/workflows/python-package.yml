@@ -56,7 +56,7 @@ jobs:
       env:
         ALLURE_ENDPOINT: ${{ secrets.ALLURE_ENDPOINT }}
         ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
-        ALLURE_PROJECT_ID: ${{ secrets.ALLURE_PROJECT_ID }}
+        ALLURE_PROJECT_ID: ${{ vars.ALLURE_PROJECT_ID }}
       run: |
         allurectl watch -- pytest --alluredir=allure-results
 
