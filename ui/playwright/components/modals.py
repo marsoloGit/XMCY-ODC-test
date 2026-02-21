@@ -1,3 +1,5 @@
+import allure
+
 from ui.selenium.pages.home_page import HomePage
 
 
@@ -13,6 +15,7 @@ class CookieModal:
     def btn_accept_all(self):
         return self.modal_container.get_by_role("button", name="Accept All")
 
+    @allure.step("Move slider")
     def accept_all_cookies(self):
         self.btn_accept_all.click()
         return HomePage(self.page)
