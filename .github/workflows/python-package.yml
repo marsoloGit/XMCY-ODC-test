@@ -1,7 +1,7 @@
 # This workflow will install Python dependencies, run tests and lint with a variety of Python versions
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
-name: Python package
+name: QA Tests
 
 on:
   push:
@@ -45,11 +45,24 @@ jobs:
       run: tox -e py
     - name: Ensure browsers are installed
       run: python -m playwright install --with-deps
-
+      
+    - name: Install allurectl
+      run: |
+        curl -L https://github.com/allure-framework/allurectl/releases/latest/download/allurectl_linux_amd64 -o allurectl
+        chmod +x allurectl
+        sudo mv allurectl /usr/local/bin/allurectl
     - name: Run selenium pytests
       run: |
         pytest tests/functional_tests/demo_test.py --doctest-modules --junitxml=junit/test-results-selenium-${{ matrix.python-version }}.xml
 
+    - name: Run tests with Allure
+      env:
+        ALLURE_ENDPOINT: ${{ secrets.ALLURE_ENDPOINT }}
+        ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
+        ALLURE_PROJECT_ID: ${{ secrets.ALLURE_PROJECT_ID }}
+      run: |
+        allurectl watch -- pytest --alluredir=allure-results
+    
     - name: Run playwright pytests
       run: |
         pytest tests/functional_tests/playwright_demo_test.py --doctest-modules --junitxml=junit/test-results-playwright-${{ matrix.python-version }}.xml
@@ -61,18 +74,18 @@ jobs:
 #        path: junit/test-results-${{ matrix.python-version }}.xml
 #      # Use always() to always run this step to publish test results when there are test failures
 #      if: ${{ always() }}
-    - name: Test Results Selenium
-      uses: dorny/test-reporter@v1
-      if: success() || failure()    # run this step even if previous step failed
-      with:
-        name: UI tests selenium            # Name of the check run which will be created
-        path: junit/test-results-selenium-${{ matrix.python-version }}.xml    # Path to test results
-        reporter: java-junit        # Format of test results
+    # - name: Test Results Selenium
+    #   uses: dorny/test-reporter@v1
+    #   if: success() || failure()    # run this step even if previous step failed
+    #   with:
+    #     name: UI tests selenium            # Name of the check run which will be created
+    #     path: junit/test-results-selenium-${{ matrix.python-version }}.xml    # Path to test results
+    #     reporter: java-junit        # Format of test results
 
-    - name: Test Resultsuses Playwright
-      uses: dorny/test-reporter@v1
-      if: success() || failure()    # run this step even if previous step failed
-      with:
-        name: UI tests playwright            # Name of the check run which will be created
-        path: junit/test-results-playwright-${{ matrix.python-version }}.xml    # Path to test results
-        reporter: java-junit        # Format of test results
+    # - name: Test Resultsuses Playwright
+    #   uses: dorny/test-reporter@v1
+    #   if: success() || failure()    # run this step even if previous step failed
+    #   with:
+    #     name: UI tests playwright            # Name of the check run which will be created
+    #     path: junit/test-results-playwright-${{ matrix.python-version }}.xml    # Path to test results
+    #     reporter: java-junit        # Format of test results
