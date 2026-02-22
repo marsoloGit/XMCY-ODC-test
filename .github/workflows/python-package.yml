@@ -18,8 +18,6 @@ jobs:
       id-token: write
       contents: read
       checks: write
-      
-    
 
     strategy:  
       fail-fast: false
@@ -28,27 +26,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    # - name: Print Allure variables
-    #   env:   
-    #     ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
-    #     ALLURE_PROJECT_ID: ${{ vars.ALLURE_PROJECT_ID }} 
-    #     ALLURE_ENDPOINT: ${{ vars.ALLURE_ENDPOINT }} 
-      # env:
-      #     MY_SECRET_TOKEN: ${{ secrets.ALLURE_TOKEN }} # Имя вашего секрета
-      # run: |
-      #   if [ -z "$MY_SECRET_TOKEN" ]; then
-      #     echo "Token is empty"
-      #   else
-      #     echo -n "$MY_SECRET_TOKEN" | wc -c
-      #   fi
-      # run: |
-      #   echo "ALLURE_TOKEN = ${{ secrets.ALLURE_ENDPOINT }}"
-      #   echo "ALLURE_ENDPOINT = ${{ vars.ALLURE_ENDPOINT }}"
-      #   echo "ALLURE_PROJECT_ID = ${{ vars.ALLURE_PROJECT_ID }}"
-
-    # - name: Print all env
-    #   run: env
-
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v3
       with:
@@ -83,7 +60,7 @@ jobs:
           --endpoint=${{ vars.ALLURE_ENDPOINT }} \
           --token=${{ secrets.ALLURE_TOKEN }} \
           --project-id=${{ vars.ALLURE_PROJECT_ID }} \
-          -- pytest --alluredir=allure-results
+          -- pytest --alluredir=allure-results --results allure-results
 
 
 
