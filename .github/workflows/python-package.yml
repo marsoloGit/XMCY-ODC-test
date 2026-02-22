@@ -13,7 +13,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    environment: production 
+    # environment: production 
     permissions:
       id-token: write
       contents: read
@@ -29,10 +29,10 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Print Allure variables
-      env:
-        ALLURE_ENDPOINT: ${{ vars.ALLURE_ENDPOINT }}
-        ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
-        ALLURE_PROJECT_ID: ${{ vars.ALLURE_PROJECT_ID }}  
+      # env:   
+      #   ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
+      #   ALLURE_PROJECT_ID: ${{ vars.ALLURE_PROJECT_ID }} 
+      #   ALLURE_ENDPOINT: ${{ vars.ALLURE_ENDPOINT }} 
       run: |
         echo "ALLURE_TOKEN = ${{ secrets.ALLURE_ENDPOINT }}"
         echo "ALLURE_ENDPOINT = ${{ vars.ALLURE_ENDPOINT }}"
