@@ -56,11 +56,11 @@ jobs:
         
     - name: Run tests with Allure
       run: |
-        allurectl watch \
+        allurectl watch --results allure-results \
           --endpoint=${{ vars.ALLURE_ENDPOINT }} \
           --token=${{ secrets.ALLURE_TOKEN }} \
           --project-id=${{ vars.ALLURE_PROJECT_ID }} \
-          -- pytest --alluredir=allure-results --results allure-results
+          -- pytest --alluredir=allure-results
 
 
 
