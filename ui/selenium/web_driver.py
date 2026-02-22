@@ -15,13 +15,13 @@ class WebDriver:
             browser_options = webdriver.ChromeOptions()
 
         if s.BROWSER_HEADLESS:
-            browser_options.add_argument("--headless")
+            browser_options.add_argument("--headless=new")
             browser_options.add_argument("--no-sandbox")
             browser_options.add_argument("--disable-dev-shm-usage")
             browser_options.add_argument("--disable-gpu")
-            browser_options.add_argument("--start-maximized")
-            browser_options.add_argument('window-size=1920,1080')
-            browser_options.add_argument("--disable-notifications");
+            browser_options.add_argument("--window-size=1920,1080")
+            browser_options.add_argument("--user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36")
+            browser_options.add_argument("--disable-notifications")
 
         if browser_type == BrowserType.CHROME:
             # browser = webdriver.Chrome(options=browser_options, executable_path=ChromeDriverManager().install())
