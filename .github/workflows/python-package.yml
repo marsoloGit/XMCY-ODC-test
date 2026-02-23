@@ -9,12 +9,18 @@ on:
   pull_request:
     branches: [ "main" ]
   workflow_dispatch: 
+    inputs:
+        ALLURE_JOB_RUN_ID:
+          description: "Service parameter from TestOps"
+          required: false
+        ALLURE_USERNAME:
+          description: "Service parameter from TestOps"
+          required: false
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
-    # environment: production 
     permissions:
       id-token: write
       contents: read
@@ -55,11 +61,15 @@ jobs:
         sudo mv allurectl /usr/local/bin/allurectl
         
     - name: Run tests with Allure
+      env:
+        ALLURE_JOB_RUN_ID: ${{ github.event.inputs.ALLURE_JOB_RUN_ID }}
+        ALLURE_USERNAME: ${{ github.event.inputs.ALLURE_USERNAME }}
       run: |
         allurectl watch --results allure-results \
           --endpoint=${{ vars.ALLURE_ENDPOINT }} \
           --token=${{ secrets.ALLURE_TOKEN }} \
           --project-id=${{ vars.ALLURE_PROJECT_ID }} \
+          --job-run-id=${ALLURE_JOB_RUN_ID} \
           -- poetry run pytest --alluredir=allure-results
 
 
