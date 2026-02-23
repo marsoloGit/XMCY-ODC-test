@@ -69,7 +69,6 @@ jobs:
           --endpoint=${{ vars.ALLURE_ENDPOINT }} \
           --token=${{ secrets.ALLURE_TOKEN }} \
           --project-id=${{ vars.ALLURE_PROJECT_ID }} \
-          --job-run-id=${ALLURE_JOB_RUN_ID} \
           -- poetry run pytest --alluredir=allure-results
 
 
