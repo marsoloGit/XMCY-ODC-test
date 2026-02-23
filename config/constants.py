@@ -29,11 +29,12 @@ class CalendarRanges(Enum):
             dates_list=[]
             for i in range(0 - today.weekday(), 7 - today.weekday()):
                 a_date = given_date + datetime.timedelta(days=i)
-                if a_date.month == today.month:
-                    dates_list.append(a_date)
-            return dates_list
-
-
+                dates_list.append(a_date)
+            dates_this_month = [day for day in dates_list if day.month==today.month]
+            if len(dates_this_month) == 0:
+                return dates_list
+            else:
+                return dates_this_month
 
         if name == cls.TODAY:
             dates_range.append(today)
@@ -50,7 +51,6 @@ class CalendarRanges(Enum):
         elif name == cls.NEXT_MONTH:
             dt_fst_day_in_next_month = (today.replace(day=1) + datetime.timedelta(days=32)).replace(day=1)
             dates_range = get_all_dates_in_month(dt_fst_day_in_next_month)
-        print(dates_range)
         return [date.strftime("%B %-d, %Y") for date in dates_range]
 
 
