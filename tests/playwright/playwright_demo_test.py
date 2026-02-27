@@ -11,8 +11,9 @@ def test_check_flow_to_calendar(home_page_pw, page):
     # Menu accessible from home_page
     home_page_pw.desktop_menu.click_link_by_text('Discover')
     home_page_pw.desktop_menu.click_link_by_text('Economic Calendar')
-    # Even if we are already on the calendar page, the menu is still there!
+    # Verify we are on the calendar page
     calendar_page = EconomicCalendar(page)
+    # Even if we are already on the calendar page, the menu is still there!
     calendar_page.desktop_menu.click_link_by_text('Trading')
 
 

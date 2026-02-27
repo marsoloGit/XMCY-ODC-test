@@ -1,5 +1,4 @@
 
-
 class MenuBlock:
     def __init__(self, page):
         self.page = page
