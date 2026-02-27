@@ -21,7 +21,7 @@ def browser_pw(playwright: Playwright):
 
     yield browser
     browser.close()
-
+s
 
 @pytest.fixture(scope='module')
 def page(browser_pw, playwright: Playwright):
