@@ -10,4 +10,4 @@ BROWSER = BrowserType.CHROME
 BROWSER_HEADLESS = True # True|False
 WEBDRIVER_ELEMENT_WAIT = 60
 TESTS_OUTPUT_DIRECTORY = os.environ['TESTS_OUTPUT_DIRECTORY'] if 'TESTS_OUTPUT_DIRECTORY' in os.environ else PROJECT_ROOT
-STORAGE_STATE_PATH = os.path.join(PROJECT_ROOT, "playwright_state.json")
+STORAGE_STATE_PATH = os.path.join(PROJECT_ROOT, "playwright_state.json") #currently no in use

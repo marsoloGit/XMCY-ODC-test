@@ -29,7 +29,7 @@ date_range_names = [
 @allure.id("1")
 @allure.title('Check calendar slider playwright')
 @pytest.mark.parametrize("date_range_name", date_range_names)
-def test_check_calendar_slider(date_range_name, home_page_pw, page):
+def test_check_calendar_slider(date_range_name, page):
     calendar_page = EconomicCalendar(page)
     calendar_page.navigate()
     calendar_page.move_slider_to(date_range_name.value)

@@ -5,7 +5,7 @@ from ui.playwright.pages.currency_calculator_page import CurrencyCalculatorPage
 
 
 @allure.title("Check All-in-One Calculator")
-def test_all_in_one_calculator(home_page_pw, all_in_one_calc_page):
+def test_all_in_one_calculator(all_in_one_calc_page):
     all_in_one_calc_page.navigate()
     all_in_one_calc_page.fill_form(
         currency="EUR",
@@ -19,7 +19,7 @@ def test_all_in_one_calculator(home_page_pw, all_in_one_calc_page):
 
 
 @allure.title("Check Currency Calculator")
-def test_currency_calculator(home_page_pw, page):
+def test_currency_calculator(page):
     currency_calc_page = CurrencyCalculatorPage(page)
     currency_calc_page.navigate()
     currency_calc_page.convert(
