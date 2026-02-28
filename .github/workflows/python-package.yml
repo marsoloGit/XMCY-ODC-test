@@ -51,8 +51,13 @@ jobs:
         # pip install tox
         # if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Ensure browsers are installed
-      # run: python -m playwright install --with-deps
       run: poetry run playwright install --with-deps
+
+    - name: Cache Playwright browsers
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/ms-playwright
+        key: ${{ runner.os }}-playwright-${{ hashFiles('**/poetry.lock') }}
       
     - name: Install allurectl
       run: |
