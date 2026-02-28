@@ -50,14 +50,15 @@ jobs:
         # python -m pip install flake8 pytest
         # pip install tox
         # if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Ensure browsers are installed
-      run: poetry run playwright install --with-deps
 
     - name: Cache Playwright browsers
       uses: actions/cache@v4
       with:
         path: ~/.cache/ms-playwright
         key: ${{ runner.os }}-playwright-${{ hashFiles('**/poetry.lock') }}
+
+    - name: Ensure browsers are installed
+      run: poetry run playwright install --with-deps
       
     - name: Install allurectl
       run: |
